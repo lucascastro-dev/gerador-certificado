@@ -2,297 +2,352 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Certificados</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Certificados</title>
+  <style>
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 50px;
+      overflow-y: auto;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .delete-all {
+      background: #dc3545;
+    }
+
+    .delete-all:hover {
+      background: #c82333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    .actions {
+      text-align: center;
+    }
+
+    .actions button {
+      margin: 2px;
+      padding: 4px 6px;
+      width: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .tabela-scroll {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 15px;
+      border: 1px solid #ddd;
+    }
+
+    .tabela-scroll thead th {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+    }
+
+    .checkbox-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    table,
+    th,
+    td {
+      font-size: 14px;
+      padding: 4px 6px;
+    }
+
+    .castrotitle{
+        color: #c82333;
+    }
+
+    .decor-line {
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(to right, #c82333, #ff4757);
+  margin: 8px auto 16px;
+  border-radius: 2px;
 }
 
-.container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
-input[type="text"],
-input[type="date"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    background: #28a745;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #218838;
-}
-
-.delete-all {
-    background: #dc3545;
-}
-
-.delete-all:hover {
-    background: #c82333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table,
-th,
-td {
-    border: 1px solid #ddd;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-}
-
-.actions {
-    text-align: center;
-}
-
-.actions button {
-    margin: 2px;
-    padding: 4px 6px;
-    width: auto;
-}
-
-.hidden {
-    display: none;
-}
-
-.tabela-scroll {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-top: 15px;
-    border: 1px solid #ddd;
-}
-
-.tabela-scroll thead th {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    z-index: 1;
-}
-
-.checkbox-inline {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-table,
-th,
-td {
-    font-size: 14px;   
-    padding: 4px 6px;  
-}
-</style>
-
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h2>Gerador de Certificados</h2>
+  <div class="container">
+    <h2 class="castrotitle">Castro Team</h2>
+<div class="decor-line"></div>
 
-        <label for="professor">Professor:</label>
-        <select id="professor">
-            <option value="Marcelo">Marcelo</option>
-            <option value="Junior">Junior</option>
-            <option value="Lucas">Lucas</option>
-            <option value="Kessia">Kessia</option>
-        </select>
+    <h2>Gerador de Certificados</h2>
 
-        <label for="nome">Nome do Aluno:</label>
-        <input type="text" id="nome">
+    <label for="professor">Professor:</label>
+    <select id="professor">
+      <option value="" disabled selected>Selecione o professor</option>
+      <option value="Marcelo">Marcelo</option>
+      <option value="Junior">Junior</option>
+      <option value="Lucas">Lucas</option>
+      <option value="Kessia">Kessia</option>
+    </select>
 
-        <label for="faixa">Faixa:</label>
-        <select id="faixa">
-            <option value="Branca Ponta Cinza">Branca Ponta Cinza</option>
-            <option value="Cinza">Cinza</option>
-            <option value="Cinza Ponta Azul">Cinza Ponta Azul</option>
-            <option value="Azul">Azul</option>
-            <option value="Azul Ponta Amarela">Azul Ponta Amarela</option>
-            <option value="Amarela">Amarela</option>
-            <option value="Amarela Ponta Laranja">Amarela Ponta Laranja</option>
-            <option value="Laranja">Laranja</option>
-            <option value="Verde">Verde</option>
-            <option value="Roxa">Roxa</option>
-            <option value="Marrom">Marrom</option>
-            <option value="Preta">Preta</option>
-        </select>
+    <label for="nome">Nome do Aluno:</label>
+    <input type="text" id="nome" placeholder="Digite o nome do aluno">
 
-        <button onclick="adicionarAluno()">Adicionar Aluno</button>
-        <button class="delete-all" onclick="removerTodosAlunos()">Excluir Todos</button>
+    <label for="faixa">Faixa:</label>
+    <select id="faixa">
+      <option value="" disabled selected>Selecione a faixa</option>
+      <option value="Branca Ponta Cinza">Branca Ponta Cinza</option>
+      <option value="Cinza">Cinza</option>
+      <option value="Cinza Ponta Azul">Cinza Ponta Azul</option>
+      <option value="Azul">Azul</option>
+      <option value="Azul Ponta Amarela">Azul Ponta Amarela</option>
+      <option value="Amarela">Amarela</option>
+      <option value="Amarela Ponta Laranja">Amarela Ponta Laranja</option>
+      <option value="Laranja">Laranja</option>
+      <option value="Verde">Verde</option>
+      <option value="Roxa">Roxa</option>
+      <option value="Marrom">Marrom</option>
+      <option value="Preta">Preta</option>
+    </select>
 
-        <div class="tabela-scroll">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Faixa</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="listaAlunos"></tbody>
-            </table>
-        </div>        
+    <button onclick="adicionarAluno()">Adicionar Aluno</button>
+    <button class="delete-all" onclick="removerTodosAlunos()">Excluir Todos</button>
 
-        <label for="dataEvento">Data do Evento:</label>
-        <input type="date" id="dataEvento">
-
-        <label>
-            <input type="checkbox" id="certificadoPersonalizado" onclick="toggleProjetos()"> Certificado Personalizado com Logo
-        </label>
-
-        <select id="projetos" class="hidden">
-            <option value="AMADOM">AMADOM</option>
-            <option value="SCTJ">SC Team Judô</option>
-            <option value="SESV">SESV</option>
-        </select>
-
-        <button onclick="gerarCertificados()">Gerar Certificados</button>
+    <div id="tabelaContainer" class="tabela-scroll hidden">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Faixa</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="listaAlunos"></tbody>
+      </table>
     </div>
 
-    <script>
-        let alunos = [];
+    <label for="dataEvento">Data do Evento:</label>
+    <input type="date" id="dataEvento">
 
-        function adicionarAluno() {
-            const nome = document.getElementById("nome").value;
-            const faixa = document.getElementById("faixa").value;
+    <label>
+      <input type="checkbox" id="certificadoPersonalizado" onclick="toggleProjetos()"> Certificado Personalizado com Logo
+    </label>
 
-            if (nome && faixa) {
-                alunos.push({ nome, faixa });
-                atualizarLista();
-                document.getElementById("nome").value = "";
-            }
-        }
+    <select id="projetos" class="hidden">
+      <option value="AMADOM">AMADOM</option>
+      <option value="SCTJ">SC Team Judô</option>
+      <option value="SESV">SESV</option>
+    </select>
 
-        function atualizarLista() {
-            const lista = document.getElementById("listaAlunos");
-            lista.innerHTML = "";
-            alunos.forEach((aluno, index) => {
-                lista.innerHTML += `
-                    <tr>
-                        <td>${aluno.nome}</td>
-                        <td>${aluno.faixa}</td>
-                        <td class="actions">
-                            <button class="edit" onclick="editarAluno(${index})">Editar</button>
-                            <button class="delete-all" onclick="removerAluno(${index})">Excluir</button>
-                        </td>
-                    </tr>`;
-            });
-        }
+    <button onclick="gerarCertificados()">Gerar Certificados</button>
+  </div>
 
-        function removerAluno(index) {
-            alunos.splice(index, 1);
-            atualizarLista();
-        }
+  <script>
+    let alunos = [];
 
-        function removerTodosAlunos() {
-            alunos = [];
-            atualizarLista();
-        }
+    function adicionarAluno() {
+  const nome = document.getElementById("nome").value.trim();
+  const faixa = document.getElementById("faixa").value;
+  const professor = document.getElementById("professor").value;
 
-        function editarAluno(index) {
-            const aluno = alunos[index];
-            document.getElementById("nome").value = aluno.nome;
-            document.getElementById("faixa").value = aluno.faixa;
-            alunos.splice(index, 1);
-            atualizarLista();
-        }
+  if (!professor) {
+    alert("Por favor, selecione o professor antes de adicionar alunos.");
+    return;
+  }
 
-        function toggleProjetos() {
-            const checkbox = document.getElementById("certificadoPersonalizado");
-            const select = document.getElementById("projetos");
-            select.classList.toggle("hidden", !checkbox.checked);
-        }
+  if (nome && faixa) {
+    alunos.push({ nome, faixa });
 
-        function gerarCertificados() {
-    const professor = document.getElementById("professor").value;
-    const dataEvento = document.getElementById("dataEvento").value;
+    document.getElementById("professor").disabled = true;
 
-    if (!dataEvento) {
-        alert("Por favor, selecione a data do evento.");
+    atualizarLista();
+    document.getElementById("nome").value = "";
+    document.getElementById("faixa").selectedIndex = 0;
+  } else {
+    alert("Por favor, preencha o nome do aluno e selecione a faixa.");
+  }
+}
+
+function removerTodosAlunos() {
+  alunos = [];
+  atualizarLista();
+  document.getElementById("professor").disabled = false;
+}
+
+function removerAluno(index) {
+  alunos.splice(index, 1);
+  atualizarLista();
+
+  if (alunos.length === 0) {
+    document.getElementById("professor").disabled = false;
+  }
+}
+
+
+    function atualizarLista() {
+      const lista = document.getElementById("listaAlunos");
+      const tabelaContainer = document.getElementById("tabelaContainer");
+      lista.innerHTML = "";
+
+      if (alunos.length === 0) {
+        tabelaContainer.classList.add("hidden");
         return;
+      }
+
+      tabelaContainer.classList.remove("hidden");
+
+      alunos.forEach((aluno, index) => {
+        lista.innerHTML += `
+          <tr>
+            <td>${aluno.nome}</td>
+            <td>${aluno.faixa}</td>
+            <td class="actions">
+              <button class="edit" onclick="editarAluno(${index})">Editar</button>
+              <button class="delete-all" onclick="removerAluno(${index})">Excluir</button>
+            </td>
+          </tr>`;
+      });
     }
 
-    const personalizado = document.getElementById("certificadoPersonalizado").checked;
-    const projeto = document.getElementById("projetos").value;
+    function editarAluno(index) {
+      const aluno = alunos[index];
+      document.getElementById("nome").value = aluno.nome;
+      document.getElementById("faixa").value = aluno.faixa;
+      alunos.splice(index, 1);
+      atualizarLista();
+    }
 
-    const dados = {
+    function toggleProjetos() {
+      const checkbox = document.getElementById("certificadoPersonalizado");
+      const select = document.getElementById("projetos");
+      select.classList.toggle("hidden", !checkbox.checked);
+    }
+
+    function gerarCertificados() {
+      const professor = document.getElementById("professor").value;
+      const dataEvento = document.getElementById("dataEvento").value;
+
+      if (!professor) {
+        alert("Por favor, selecione o professor.");
+        return;
+      }
+
+      if (!dataEvento) {
+        alert("Por favor, selecione a data do evento.");
+        return;
+      }
+
+      if (alunos.length === 0) {
+        alert("Adicione pelo menos um aluno antes de gerar os certificados.");
+        return;
+      }
+
+      const personalizado = document.getElementById("certificadoPersonalizado").checked;
+      const projeto = document.getElementById("projetos").value;
+
+      const dados = {
         professor,
         dataEvento,
         personalizado,
         projeto: personalizado ? projeto : null,
         alunos
-    };
+      };
 
-    fetch("salvar_certificado.php", {
+      fetch("salvar_certificado.php", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(dados)
-    })
-    .then(response => response.text())
-    .then(msg => {
-        alert(msg);
-        document.getElementById("dataEvento").value = "";
-        document.getElementById("certificadoPersonalizado").checked = false;
-        document.getElementById("projetos").classList.add("hidden");
-        document.getElementById("professor").value = "Marcelo";
-        alunos = [];
-        atualizarLista();
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Erro ao salvar certificado.");
-    });
-}
-    </script>
+      })
+        .then(response => response.text())
+        .then(msg => {
+          alert(msg);
+          document.getElementById("dataEvento").value = "";
+          document.getElementById("certificadoPersonalizado").checked = false;
+          document.getElementById("projetos").classList.add("hidden");
+          document.getElementById("professor").selectedIndex = 0;
+          alunos = [];
+          atualizarLista();
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Erro ao salvar certificado.");
+        });
+    }
+  </script>
 </body>
 
 </html>
