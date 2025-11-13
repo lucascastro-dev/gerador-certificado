@@ -19,7 +19,7 @@ if (!is_dir($caminho)) {
 
 $arquivoCompleto = $caminho . "/" . $nomeArquivo;
 
-file_put_contents($arquivoCompleto, json_encode($data, JSON_PRETTY_PRINT));
+file_put_contents($arquivoCompleto, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 echo "Arquivo salvo com sucesso: $nomeArquivo";
 ?>

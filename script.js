@@ -68,7 +68,7 @@ function editarAluno(index) {
   const aluno = alunos[index];
   document.getElementById("nome").value = aluno.nome;
   document.getElementById("faixa").value = aluno.faixa;
-  document.getElementById("medida").value = aluno.faixa;
+  document.getElementById("medida").value = aluno.medida;
   alunos.splice(index, 1);
   atualizarLista();
 }
