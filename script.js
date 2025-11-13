@@ -4,18 +4,20 @@ function adicionarAluno() {
   const nome = document.getElementById("nome").value.trim();
   const faixa = document.getElementById("faixa").value;
   const professor = document.getElementById("professor").value;
+  const medida = document.getElementById("medida").value;
 
   if (!professor) {
     alert("Por favor, selecione o professor antes de adicionar alunos.");
     return;
   }
 
-  if (nome && faixa) {
-    alunos.push({ nome, faixa });
+  if (nome && faixa && medida) {
+    alunos.push({ nome, faixa, medida });
     document.getElementById("professor").disabled = true;
     atualizarLista();
     document.getElementById("nome").value = "";
     document.getElementById("faixa").selectedIndex = 0;
+    document.getElementById("medida").selectedIndex = 0;
   } else {
     alert("Por favor, preencha o nome do aluno e selecione a faixa.");
   }
@@ -53,6 +55,7 @@ function atualizarLista() {
       <tr>
         <td>${aluno.nome}</td>
         <td>${aluno.faixa}</td>
+        <td>${aluno.medida}</td>
         <td class="actions">
           <button class="edit" onclick="editarAluno(${index})">Editar</button>
           <button class="delete-all" onclick="removerAluno(${index})">Excluir</button>
@@ -65,6 +68,7 @@ function editarAluno(index) {
   const aluno = alunos[index];
   document.getElementById("nome").value = aluno.nome;
   document.getElementById("faixa").value = aluno.faixa;
+  document.getElementById("medida").value = aluno.faixa;
   alunos.splice(index, 1);
   atualizarLista();
 }

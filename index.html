@@ -44,6 +44,22 @@
       <option value="Preta">Preta</option>
     </select>
 
+    <label for="medida">Tamanho Faixa:</label>
+    <select id="medida">
+      <option value="" disabled selected>Selecione o tamanho da faixa</option>
+      <option value="M000">M000</option>
+      <option value="M00">M00</option>
+      <option value="M0">M0</option>
+      <option value="M1">M1</option>
+      <option value="M2">M2</option>
+      <option value="M3">M3</option>
+      <option value="M4">M4</option>
+      <option value="A1">A1</option>
+      <option value="A2">A2</option>
+      <option value="A3">A3</option>
+      <option value="A4">A4</option>
+    </select>
+
     <button onclick="adicionarAluno()">Adicionar Aluno</button>
     <button class="delete-all" onclick="removerTodosAlunos()">Excluir Todos</button>
 
@@ -53,6 +69,7 @@
           <tr>
             <th>Nome</th>
             <th>Faixa</th>
+            <th>Tamanho Faixa</th>
             <th>Ações</th>
           </tr>
         </thead>
